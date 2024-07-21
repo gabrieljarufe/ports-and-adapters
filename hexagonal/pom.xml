@@ -126,6 +126,7 @@
 								<!-- If set to true, generates only API controller interface and
                                     you need to provide the implementation -->
 								<interfaceOnly>false</interfaceOnly>
+								<additionalModelTypeAnnotations>@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
 							</configOptions>
 						</configuration>
 					</execution>

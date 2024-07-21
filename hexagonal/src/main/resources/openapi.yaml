@@ -6,7 +6,7 @@ info:
 
     Some useful links:
     - [The Client Address repository](https://github.com/gabrieljarufe/ports-and-adapters)
-    - [The source API definition for the Client Address](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+    - [The source API definition for the Client Address](https://github.com/gabrieljarufe/ports-and-adapters/blob/develop/hexagonal/src/main/resources/openapi.yaml)
   termsOfService: http://swagger.io/terms/
   contact:
     name: Gabriel Alves Jarufe
@@ -30,8 +30,9 @@ paths:
         - Client
       summary: Add a new client to the app
       description: Add a new client to the app
+      operationId: createCustomer
       requestBody:
-        description: Create a new pet in the store
+        description: Add a new client to the app
         content:
           application/json:
             schema:
