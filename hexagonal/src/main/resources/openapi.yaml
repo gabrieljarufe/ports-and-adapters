@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Client Address - OpenAPI 3.0
+  description: |-
+    This is a project created to understand better the usage of Contract First and Hexagonal Arch (Ports and Adapters)
+
+    Some useful links:
+    - [The Client Address repository](https://github.com/gabrieljarufe/ports-and-adapters)
+    - [The source API definition for the Client Address](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Gabriel Alves Jarufe
+    email: gabrieljarufe1@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/client-address/api/v1
+tags:
+  - name: Client
+    description: Operations about Clients
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /create:
+    post:
+      tags:
+        - Client
+      summary: Add a new client to the app
+      description: Add a new client to the app
+      requestBody:
+        description: Create a new pet in the store
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerRequestDTO"
+        "400":
+          description: Invalid input
+        "422":
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+
+components:
+  schemas:
+    CustomerRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Gabriel Jarufe
+        cpf:
+          type: string
+          example: 12345678910
+        zipCode:
+          type: string
+          example: 01065000
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

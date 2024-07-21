@@ -85,10 +85,52 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.2.Final</version>
 		</dependency>
+		<!--Open API Contract First Dependencies-->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>com.jarufe.hexagonal.api</apiPackage>
+							<modelPackage>com.jarufe.hexagonal.model</modelPackage>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+							<templateDirectory>${project.basedir}/src/main/resources</templateDirectory>
+							<configOptions>
+								<!-- Name of the source folder path under 'generated' folder -->
+								<sourceFolder>src/main/java</sourceFolder>
+								<useSpringBoot3>true</useSpringBoot3>
+								<!-- Set to true if you want to generate a delegate class, which
+                                    will be injected in controller -->
+								<delegatePattern>true</delegatePattern>
+								<!-- If set to true, generates only API controller interface and
+                                    you need to provide the implementation -->
+								<interfaceOnly>false</interfaceOnly>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

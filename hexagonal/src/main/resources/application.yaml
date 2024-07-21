@@ -1,2 +1,7 @@
 spring:
-  application.name: hexagonal
+  application.name: client-address
+  data:
+    mongodb:
+      uri:mongodb://localhost:27017/client-address
+backend-services:
+  url-zipcode-searcher: ${URL_ZIPCODE:https://api.brasilaberto.com/v1/zipcode/{zipcode}}
